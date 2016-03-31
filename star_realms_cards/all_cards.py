@@ -18,11 +18,13 @@ AUTHORITY = 'authority'
 DRAW = 'draw'
 OPPONENT_DISCARD = 'opponent-discard'
 TRADE_ROW_SCRAP = 'trade-row-scrap'
+# TODO: Should scrap be a number? Categorized under Other abilities?
 SCRAP = 'scrap'
 OTHER_ABILITY = 'other-ability'
 
 # Other ability fields
 DESTROY_BASE = 'destroy-base'
+ALLY_PLACE_INTO_HAND = 'ally-place-into-hand'
 
 # For cards that have 'or' text
 OR = 'or'
@@ -42,6 +44,7 @@ BASE = 'base'
 # Scrap values
 SCRAP_HAND = 'scrap-hand'
 SCRAP_DISCARD = 'scrap-discard'
+# TODO: Should this just be contained in an OR? Seems poor
 SCRAP_HAND_DISCARD = 'scrap-hand-discard'
 
 # Set values
@@ -56,7 +59,7 @@ COLONY_WARS = 'Colony Wars'
 
 
 class StarRealmsCards:
-    BASE_SET = [
+    ALL_STAR_REALMS_CARDS = [
         {
             NAME: 'Scout',
             FACTION: UNALIGNED,
@@ -258,8 +261,7 @@ class StarRealmsCards:
             SET: STAR_REALMS,
             QUANTITY: 1,
             ABILITIES: {
-                OTHER_ABILITY: 'Scrap up to two cards from your hand and/or discard pile. '
-                               'Draw a card for each card scrapped this way.'
+                SCRAP: 'Scrap up to two cards from your hand and/or discard pile. Draw a card for each card scrapped this way.'
             }
         },
         {
@@ -433,7 +435,7 @@ class StarRealmsCards:
             SET: STAR_REALMS,
             QUANTITY: 1,
             ABILITIES: {
-                OTHER_ABILITY: 'All of your ships get +1 Combat.'
+                OTHER_ABILITY: 'All of your ships get 1 Combat.'
             }
         },
         {
@@ -802,5 +804,928 @@ class StarRealmsCards:
             ALLY_ABILITIES: {
                 DRAW: 1
             }
+        },
+        {
+            NAME: 'Battle Bot',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 1,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 2,
+                SCRAP: SCRAP_HAND
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 2
+            }
+        },
+        {
+            NAME: 'Repair Bot',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 2,
+                SCRAP: SCRAP_DISCARD
+            },
+            SCRAP_ABILITIES: {
+                COMBAT: 2
+            }
+        },
+        {
+            NAME: 'Convoy Bot',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 3,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 4,
+                SCRAP: SCRAP_HAND_DISCARD
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 2
+            }
+        },
+        {
+            NAME: 'Mining Mech',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                TRADE: 3,
+                SCRAP: SCRAP_HAND_DISCARD
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 3
+            }
+        },
+        {
+            NAME: 'Mech Cruiser',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 5,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 6,
+                SCRAP: SCRAP_HAND_DISCARD
+            },
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: DESTROY_BASE
+            }
+        },
+        {
+            NAME: 'The Wrecker',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 7,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 6,
+                SCRAP: 'You may scrap up to two cards in your hand and/or discard pile.'
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Warning Beacon',
+            FACTION: MACHINE_CULT,
+            TYPE: OUTPOST,
+            SHIELD: 2,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 2,
+                OTHER_ABILITY: ALLY_PLACE_INTO_HAND
+            }
+        },
+        {
+            NAME: 'The Oracle',
+            FACTION: MACHINE_CULT,
+            TYPE: OUTPOST,
+            SHIELD: 5,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                SCRAP: SCRAP_HAND
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 3
+            }
+        },
+        {
+            NAME: 'Stealth Tower',
+            FACTION: MACHINE_CULT,
+            TYPE: OUTPOST,
+            SHIELD: 5,
+            COST: 5,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                OTHER_ABILITY: 'Until your turn ends, Stealth Tower becomes a copy of any base in play. '
+                               'Stealth Tower has that base\'s faction in addition to Machine Cult.'
+            }
+        },
+        {
+            NAME: 'Frontier Station',
+            FLAVOR: '"Supply and Protect" - Station Invocation',
+            FACTION: MACHINE_CULT,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 6,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                OR: {
+                    TRADE: 2,
+                    COMBAT: 3
+                }
+            }
+        },
+        {
+            NAME: 'The Incinerator',
+            FACTION: MACHINE_CULT,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 8,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                SCRAP: 'Scrap up to two cards in your hand and/or discard pile.'
+            },
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: 'Gain 2 Combat for each card scrapped from your hand and/or discard pile this turn.'
+            }
+        },
+        {
+            NAME: 'Star Barge',
+            FLAVOR: 'Trade on the fringe: high risk, high reward.',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 1,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 2
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 2,
+                OPPONENT_DISCARD: 1
+            }
+        },
+        {
+            NAME: 'Lancer',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 4,
+                OTHER_ABILITY: 'If an opponent controls a base, gain an additional 2 Combat.'
+            },
+            ALLY_ABILITIES: {
+                OPPONENT_DISCARD: 1
+            }
+        },
+        {
+            NAME: 'Falcon',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 3,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                COMBAT: 2,
+                DRAW: 1
+            },
+            SCRAP_ABILITIES: {
+                OPPONENT_DISCARD: 1
+            }
+        },
+        {
+            NAME: 'Gunship',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                COMBAT: 5,
+                OPPONENT_DISCARD: 1
+            },
+            SCRAP_ABILITIES: {
+                TRADE: 4
+            }
+        },
+        {
+            NAME: 'Heavy Cruiser',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 5,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 4,
+                DRAW: 1
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Aging Battleship',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 5,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 5
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            },
+            SCRAP_ABILITIES: {
+                COMBAT: 2,
+                DRAW: 2
+            }
+        },
+        {
+            NAME: 'Emperor\'s Dreadnaught',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 8,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 8,
+                DRAW: 1,
+                OPPONENT_DISCARD: 1,
+                OTHER_ABILITY: ALLY_PLACE_INTO_HAND
+            }
+        },
+        {
+            NAME: 'Orbital Platform',
+            FACTION: STAR_EMPIRE,
+            TYPE: BASE,
+            SHIELD: 4,
+            COST: 3,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                OTHER_ABILITY: 'Discard a card. If you do, draw a card.'
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 3
+            }
+        },
+        {
+            NAME: 'Command Center',
+            FACTION: STAR_EMPIRE,
+            TYPE: OUTPOST,
+            SHIELD: 4,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                TRADE: 2,
+                OTHER_ABILITY: 'Whenever you play a Star Empire ship, gain 2 Combat.'
+            }
+        },
+        {
+            NAME: 'Supply Depot',
+            FACTION: STAR_EMPIRE,
+            TYPE: OUTPOST,
+            SHIELD: 5,
+            COST: 6,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                OTHER_ABILITY: 'Discard up to two cards. Gain 2 Trade or 2 Combat for each card discarded this way.'
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Imperial Palace',
+            FACTION: STAR_EMPIRE,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 7,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                DRAW: 1,
+                OPPONENT_DISCARD: 1
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 4
+            }
+        },
+        {
+            NAME: 'Swarmer',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 1,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 3,
+                TRADE_ROW_SCRAP: 1
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 2
+            }
+        },
+        {
+            NAME: 'Predator',
+            FLAVOR: 'You\'re the prey.',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 4
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Cargo Pod',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 3,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 3,
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 3
+            },
+            SCRAP_ABILITIES: {
+                COMBAT: 3
+            }
+        },
+        {
+            NAME: 'Ravager',
+            FLAVOR: 'Even heavily armed convoys fear the Ravagers.',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 3,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                COMBAT: 6,
+                TRADE_ROW_SCRAP: 2
+            }
+        },
+        {
+            NAME: 'Parasite',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 5,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                OR: {
+                    COMBAT: 6,
+                    OTHER_ABILITY: 'Acquire a card of cost six or less for free.'
+                }
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Moonwurm',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 7,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 8,
+                DRAW: 1
+            },
+            ALLY_ABILITIES: {
+                # TODO: This is similar to Parasite and Leviathan, should this be a keyword?
+                OTHER_ABILITY: 'Acquire a card of cost two or less for free and put it into your hand.'
+            }
+        },
+        {
+            NAME: 'Leviathan',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 8,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 9,
+                DRAW: 1,
+                OTHER_ABILITY: DESTROY_BASE
+            },
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: 'Acquire a card of cost three or less for free and put it into your hand.'
+            }
+        },
+        {
+            NAME: 'Stellar Reef',
+            FACTION: BLOB,
+            TYPE: BASE,
+            SHIELD: 3,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 1
+            },
+            SCRAP_ABILITIES: {
+                COMBAT: 3
+            }
+        },
+        {
+            NAME: 'Bioformer',
+            FACTION: BLOB,
+            TYPE: BASE,
+            SHIELD: 4,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                COMBAT: 3
+            },
+            SCRAP_ABILITIES: {
+                TRADE: 3
+            }
+        },
+        {
+            NAME: 'Plasma Vent',
+            FACTION: BLOB,
+            TYPE: BASE,
+            SHIELD: 5,
+            COST: 6,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 4,
+                OTHER_ABILITY: ALLY_PLACE_INTO_HAND
+            },
+            SCRAP_ABILITIES: {
+                OTHER_ABILITY: DESTROY_BASE
+            }
+        },
+        {
+            NAME: 'Solar Skiff',
+            FLAVOR: 'Trade is a colony\'s life blood.',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 1,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 2
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Trade Hauler',
+            FLAVOR: '"A well supplied colony is a loyal colony." - CEO Shaner',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 3
+            },
+            ALLY_ABILITIES: {
+                AUTHORITY: 3
+            }
+        },
+        {
+            NAME: 'Patrol Cutter',
+            FLAVOR: 'Cutters are the life line of Federation colonies.',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 3,
+            SET: COLONY_WARS,
+            QUANTITY: 3,
+            ABILITIES: {
+                TRADE: 2,
+                COMBAT: 3
+            },
+            ALLY_ABILITIES: {
+                AUTHORITY: 4
+            }
+        },
+        {
+            NAME: 'Frontier Ferry',
+            FLAVOR: 'Suited for ferrying colonists or supplies.',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                TRADE: 3,
+                AUTHORITY: 4
+            },
+            SCRAP_ABILITIES: {
+                OTHER_ABILITY: DESTROY_BASE
+            }
+        },
+        {
+            NAME: 'Colony Seed Ship',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 5,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                TRADE: 3,
+                COMBAT: 3,
+                AUTHORITY: 3,
+                OTHER_ABILITY: ALLY_PLACE_INTO_HAND
+            }
+        },
+        {
+            NAME: 'Peacekeeper',
+            FLAVOR: 'Might makes peace.',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 6,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 6,
+                AUTHORITY: 6
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Storage Silo',
+            FACTION: TRADE_FEDERATION,
+            TYPE: BASE,
+            SHIELD: 3,
+            COST: 2,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                AUTHORITY: 2
+            },
+            ALLY_ABILITIES: {
+                TRADE: 2
+            }
+        },
+        {
+            NAME: 'Central Station',
+            FACTION: TRADE_FEDERATION,
+            TYPE: BASE,
+            SHIELD: 5,
+            COST: 4,
+            SET: COLONY_WARS,
+            QUANTITY: 2,
+            ABILITIES: {
+                TRADE: 2,
+                OTHER_ABILITY: 'If you have three or more bases in play (including this one), gain 4 Authority and draw a card.'
+            }
+        },
+        {
+            NAME: 'Federation Shipyard',
+            FACTION: TRADE_FEDERATION,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 6,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                TRADE: 2
+            },
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: 'Put the next ship or base you acquire this turn on top of your deck.'
+            }
+        },
+        {
+            NAME: 'Storage Silo',
+            FLAVOR: 'Colonies still loyal to the Federation are precious.',
+            FACTION: TRADE_FEDERATION,
+            TYPE: BASE,
+            SHIELD: 6,
+            COST: 7,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                TRADE: 3,
+                COMBAT: 3,
+                AUTHORITY: 3
+            }
+        },
+        {
+            NAME: 'Factory World',
+            FACTION: TRADE_FEDERATION,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 8,
+            SET: COLONY_WARS,
+            QUANTITY: 1,
+            ABILITIES: {
+                TRADE: 3,
+                OTHER_ABILITY: 'Put the next ship or base you acquire this turn into your hand.'
+            }
+        },
+        {
+            NAME: 'Defense Bot',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 2,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 2,
+            ABILITIES: {
+                COMBAT: 1,
+                SCRAP: SCRAP_HAND_DISCARD,
+                OTHER_ABILITY: 'If you control two or more bases, gain 8 Combat.'
+            }
+        },
+        {
+            NAME: 'Mega Mech',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 5,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 6,
+                OTHER_ABILITY: 'You may return target base from play to its owner\'s hand.'
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Imperial Trader',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 5,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 1,
+            ABILITIES: {
+                TRADE: 3,
+                DRAW: 1
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 4
+            }
+        },
+        {
+            NAME: 'Fighter Base',
+            FLAVOR: 'These bases play a key role in expanding the empire\'s influence.',
+            FACTION: STAR_EMPIRE,
+            TYPE: OUTPOST,
+            SHIELD: 5,
+            COST: 3,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 2,
+            ALLY_ABILITIES: {
+                OPPONENT_DISCARD: 1
+            }
+        },
+        {
+            NAME: 'Obliterator',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 6,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 7,
+                OTHER_ABILITY: 'If your opponent has two or more bases in play, gain 6 Combat.'
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Trade Wheel',
+            FACTION: BLOB,
+            TYPE: BASE,
+            SHIELD: 5,
+            COST: 3,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 2,
+            ABILITIES: {
+                TRADE: 1
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 2
+            }
+        },
+        {
+            NAME: 'Trade Raft',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 1,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 2,
+            ABILITIES: {
+                TRADE: 1
+            },
+            ALLY_ABILITIES: {
+                DRAW: 1
+            },
+            SCRAP_ABILITIES: {
+                TRADE: 1
+            }
+        },
+        {
+            NAME: 'Construction Hauler',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 6,
+            SET: CRISIS_BASES_BATTLESHIPS,
+            QUANTITY: 1,
+            ABILITIES: {
+                AUTHORITY: 3,
+                TRADE: 2,
+                DRAW: 1
+            },
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: 'You may put the next base you acquire this turn directly into play.'
+            }
+        },
+        {
+            NAME: 'Patrol Bot',
+            FLAVOR: 'When it comes to Patrol Bot tactics, Elder P.F.D. Davis wrote the scripture.',
+            FACTION: MACHINE_CULT,
+            TYPE: SHIP,
+            COST: 2,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 2,
+            ABILITIES: {
+                OR: {
+                    TRADE: 2,
+                    COMBAT: 4
+                }
+            },
+            ALLY_ABILITIES: {
+                SCRAP: SCRAP_HAND_DISCARD
+            }
+        },
+        {
+            NAME: 'Border Fort',
+            FACTION: MACHINE_CULT,
+            TYPE: OUTPOST,
+            SHIELD: 5,
+            COST: 4,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 1,
+            ABILITIES: {
+                OR: {
+                    TRADE: 1,
+                    COMBAT: 2
+                }
+            },
+            ALLY_ABILITIES: {
+                SCRAP: SCRAP_HAND_DISCARD
+            }
+        },
+        {
+            NAME: 'Cargo Launch',
+            FLAVOR: 'These cargo ships were originally designed as combat drones by Federation CEO JayPaul Barrow.',
+            FACTION: STAR_EMPIRE,
+            TYPE: SHIP,
+            COST: 1,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 2,
+            ABILITIES: {
+                DRAW: 1
+            },
+            SCRAP_ABILITIES: {
+                TRADE: 1
+            }
+        },
+        {
+            NAME: 'Star Fortress',
+            FACTION: STAR_EMPIRE,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 7,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 3,
+                OTHER_ABILITY: 'Draw a card, then discard a card.'
+            },
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: 'Draw a card, then discard a card.'
+            }
+        },
+        {
+            NAME: 'Spike Pod',
+            FACTION: BLOB,
+            TYPE: SHIP,
+            COST: 1,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 2,
+            ABILITIES: {
+                COMBAT: 3,
+                TRADE_ROW_SCRAP: 2
+            },
+            SCRAP_ABILITIES: {
+                COMBAT: 2
+            }
+        },
+        {
+            NAME: 'Death World',
+            FACTION: BLOB,
+            TYPE: BASE,
+            SHIELD: 6,
+            COST: 7,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 1,
+            ABILITIES: {
+                COMBAT: 4,
+                OTHER_ABILITY: 'You may scrap a Trade Federation, Machine Cult, or Star Empire card '
+                               'from your hand or discard pile. If you do, draw a card.'
+            }
+        },
+        {
+            NAME: 'Customs Frigate',
+            FACTION: TRADE_FEDERATION,
+            TYPE: SHIP,
+            COST: 4,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 2,
+            ABILITIES: {
+                OTHER_ABILITY: 'You may acquire a ship of cost four or less and put it on top of your deck.'
+            },
+            ALLY_ABILITIES: {
+                COMBAT: 4
+            },
+            SCRAP_ABILITIES: {
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Capitol World',
+            FLAVOR: '"Wealth is power" - CEO Ridlan Haygan',
+            FACTION: TRADE_FEDERATION,
+            TYPE: OUTPOST,
+            SHIELD: 6,
+            COST: 8,
+            SET: CRISIS_FLEETS_FORTRESSES,
+            QUANTITY: 1,
+            ABILITIES: {
+                AUTHORITY: 6,
+                DRAW: 1
+            }
+        },
+        {
+            NAME: 'Merc Cruiser',
+            FLAVOR: 'They have as much courage as you have coin.',
+            FACTION: UNALIGNED,
+            TYPE: SHIP,
+            COST: 3,
+            SET: PROMOTIONAL,
+            QUANTITY: 3,
+            ABILITIES: {
+                COMBAT: 5,
+                OTHER_ABILITY: 'Choose a faction as you play Merc Cruiser. Merc Cruiser has that faction.'
+            }
+        },
+        {
+            NAME: 'Mercenary Garrison',
+            FACTION: UNALIGNED,
+            TYPE: OUTPOST,
+            SHIELD: 5,
+            COST: 4,
+            SET: PROMOTIONAL,
+            QUANTITY: 3,
+            ALLY_ABILITIES: {
+                OTHER_ABILITY: 'Star Empire ally: 2 Combat',
+                OTHER_ABILITY: 'Machine Cult ally: Scrap a card from your hand or discard pile.',
+                OTHER_ABILITY: 'Trade Federation ally: 3 Authority',
+                OTHER_ABILITY: 'Blob ally: Scrap up to two cards currently in the trade row.'
+            }
         }
     ]
+
+
